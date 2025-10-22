@@ -10,7 +10,8 @@ public class Personagem {
     private Inventario inventario;
     private boolean ta_vivo;
 
-    public Personagem (String nome, short hp,short at,short df){
+    public Personagem (String nome, short hp,short at,short df)throws Exception{
+        if(nome == null) throw new Exception("Nome não pode ser nulo");
         this.lvl = 1;
         this.nome = nome;
         this.hp = hp;
@@ -68,10 +69,4 @@ public class Personagem {
                 "\nDefesa: " + this.df +
                 "\nVida: " + this.hp;
     }
-
-
-    @Override
-    public Object
-
-
 }

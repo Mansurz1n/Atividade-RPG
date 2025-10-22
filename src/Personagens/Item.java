@@ -1,3 +1,5 @@
+package Personagens;
+
 public class Item {
 
     private String nome_item;
@@ -12,5 +14,14 @@ public class Item {
         this.efeito = efeito;
         this.quant = quantidade;
     }
+
+    public void setQuant(quant){
+
+    }
+
+
+
+
+
 
 }
