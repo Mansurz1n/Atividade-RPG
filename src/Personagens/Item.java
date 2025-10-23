@@ -1,22 +1,22 @@
 package Personagens;
 
-import java.util.Objects;
-
 public class Item implements Comparable<Item>,Cloneable {
 
     private String nome_item;
     private String desc;
     private String efeito;
     private byte quant;
+    private byte poder;
 
 
-    public Item(String nome,String desc, String efeito, byte quantidade) throws Exception {
+    public Item(String nome,String desc, String efeito, byte quantidade, byte p) throws Exception {
         if(nome==null || efeito==null)throw new Exception("O item precisa conter todos os atributos");
         if(quantidade<=0) throw new Exception("Precisa ter pelo menos 1 desse item");
         this.nome_item = nome;
         this.desc = desc;
         this.efeito = efeito;
         this.quant = quantidade;
+        this.poder = p;
     }
 
     public String getNome_item() {
@@ -35,6 +35,7 @@ public class Item implements Comparable<Item>,Cloneable {
         return this.efeito;
     }
 
+    public byte getPoder() { return poder; }
 
     public void setDesc(String desc) {
         this.desc = desc;
@@ -54,16 +55,29 @@ public class Item implements Comparable<Item>,Cloneable {
         this.quant = quant;
     }
 
+    public void setPoder(byte poder) { this.poder = poder; }
 
     public void PegarItems(byte add)
     {
         if (add>0)this.quant+=add;
     }
 
+
+    public void usar(){
+        if (this.quant>0){
+            this.quant --;
+            System.out.println("Usou " + this.nome_item + " Restam:" + this.quant);
+            return;
+        }else {
+            System.out.println("Não possui mais esse item");
+        }
+    }
+
     @Override
     public String toString(){
         return this.nome_item + " " +this.quant + "\n"
-                + this.efeito + " " + this.desc + "\n";
+                + this.efeito + " " + this.poder + "\n" +
+                this.desc + "\n";
     }
 
     @Override
@@ -74,7 +88,7 @@ public class Item implements Comparable<Item>,Cloneable {
 
         Item i = (Item) obj;
 
-        if(!i.nome_item.equals(this.nome_item) ||!i.desc.equals(this.desc) || !i.efeito.equals(this.efeito)||i.quant!=this.quant)return false;
+        if(!i.nome_item.equals(this.nome_item) ||!i.desc.equals(this.desc) || !i.efeito.equals(this.efeito) || i.poder!=this.poder)return false;
 
         return true;
 
@@ -89,7 +103,7 @@ public class Item implements Comparable<Item>,Cloneable {
         ret = ret * 2 + this.nome_item.hashCode();
         ret = ret * 2 + this.efeito.hashCode();
         ret = ret * 2 + this.desc.hashCode();
-
+        ret = ret* 2 + ((Byte)this.poder).hashCode();
         if(ret<0) ret = -ret;
 
         return ret;
@@ -103,8 +117,8 @@ public class Item implements Comparable<Item>,Cloneable {
     * */
     @Override
     public int compareTo(Item o) {
-        if (this.quant<o.quant) return  -666;
-        if (this.quant>o.quant) return 666;
+        if (this.poder<o.poder) return  -666;
+        if (this.poder>o.poder) return 666;
         return 0;
     }
 
@@ -116,6 +130,7 @@ public class Item implements Comparable<Item>,Cloneable {
         this.desc=i.desc;
         this.efeito=i.efeito;
         this.quant=i.quant;
+        this.poder = i.poder;
     }
 
     @Override
