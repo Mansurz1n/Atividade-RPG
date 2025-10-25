@@ -6,7 +6,8 @@ public class Arqueiro extends Personagem{
     }
 
 
-
-
-
+    @Override
+    public Object clone() {
+        return null;
+    }
 }

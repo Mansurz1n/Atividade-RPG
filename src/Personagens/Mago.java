@@ -7,9 +7,8 @@ public class Mago extends Personagem{
     }
 
 
-
-
-
-
-
+    @Override
+    public Object clone() {
+        return null;
+    }
 }

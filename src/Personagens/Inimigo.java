@@ -8,7 +8,8 @@ public class Inimigo extends Personagem  {
     }
 
 
-
-
-
+    @Override
+    public Object clone() {
+        return null;
+    }
 }

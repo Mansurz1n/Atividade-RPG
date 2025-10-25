@@ -7,7 +7,8 @@ public class Guerreiro extends Personagem {
     }
 
 
-
-
-
+    @Override
+    public Object clone() {
+        return null;
+    }
 }
