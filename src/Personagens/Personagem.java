@@ -5,7 +5,8 @@ import java.util.Random;
 public abstract class Personagem {
 
     private String nome;
-    private short hp;
+    private short hpAtual;
+    private short hpMax;
     private short at;
     private short df;
     private short lvl;
@@ -17,7 +18,8 @@ public abstract class Personagem {
         if(nome == null) throw new Exception("Nome não pode ser nulo");
         this.lvl = 1;
         this.nome = nome;
-        this.hp = hp;
+        this.hpMax = hp;
+        this.hpAtual = hp;
         this.at = at;
         this.df = df;
         this.inv = new Inventario();
@@ -42,8 +44,14 @@ public abstract class Personagem {
         this.df = df;
     }
 
-    public void setHp(short hp) {
-        this.hp = hp;
+    public void setHpAtual(short hpAtual)throws Exception {
+        if(hpAtual>this.hpMax)hpAtual =hpMax;
+        else if (hpAtual < 0) this.hpAtual = 0;
+        else this.hpAtual = hpAtual;
+    }
+
+    public void setHpMax(short hpMax) {
+        this.hpMax = hpMax;
     }
 
     public void setInv(Inventario inv) {
@@ -62,8 +70,8 @@ public abstract class Personagem {
         return this.nome;
     }
 
-    public short getHp() {
-        return this.hp;
+    public short getHpAtual() {
+        return this.hpAtual;
     }
 
     public Inventario getInv() {
@@ -79,15 +87,15 @@ public abstract class Personagem {
         boolean escolhaCerta = false;
 
         while(!escolhaCerta){
-            System.out.println("1: Vida" + this.hp + " + 10 " + "\n 2: Ataque "+this.at +" +1" +  "\n 3: Defesa " + this.df + " +1.");
+            System.out.println("1: Vida" + this.hpMax + " + 10 " + "\n 2: Ataque "+this.at +" +1" +  "\n 3: Defesa " + this.df + " +1.");
             System.out.println("Escolha: ");
             try {
                 escolha = Teclado.getUmByte();
 
                 switch (escolha) {
                     case 1: {
-                        this.hp += 10;
-                        System.out.println("Agora o Hp do personagem é de :" + this.hp);
+                        this.hpMax += 10;
+                        System.out.println("Agora o Hp do personagem é de :" + this.hpMax);
                         escolhaCerta = true;
                         break;
                     }
@@ -114,19 +122,16 @@ public abstract class Personagem {
     }
 
     public boolean isTa_vivo() {
-        if(this.hp<=0){
-        return false;
-        }
-        return true;
+        return this.hpAtual > 0;
     }
 
 
     public void dano (short dano){
         if(dano>0){
-            this.hp -=dano;
+            this.hpAtual -=dano;
             System.out.println("O " + this.nome + "levou " + dano + "de dano!");
             if(!isTa_vivo()){
-                this.hp = 0;
+                this.hpAtual = 0;
                 System.out.println("O " + this.nome + " foi derrotado!" );
             }
         }else {
@@ -150,7 +155,7 @@ public abstract class Personagem {
         System.out.println("\n============================================");
         System.out.println("           ⚔️ BATALHA INICIADA ⚔️");
         System.out.println("============================================");
-        System.out.println(this.getNome() + " (HP: " + this.getHp() + ") vs " + i.getNome() + " (HP: " + i.getHp() + ")");
+        System.out.println(this.getNome() + " (HP: " + this.getHpAtual() + ") vs " + i.getNome() + " (HP: " + i.getHpAtual() + ")");
         System.out.println("--------------------------------------------");
 
         while(i.isTa_vivo() && this.isTa_vivo()){
@@ -161,12 +166,12 @@ public abstract class Personagem {
                 this.upeiDeNivel();
                 break;
             }
-            System.out.println("Vida Atual do " + i.getNome() + " é de " + i.getHp()+".");
+            System.out.println("Vida Atual do " + i.getNome() + " é de " + i.getHpAtual()+".");
 
             ataque = calculoDano(this.df);
             this.dano(ataque);
 
-            System.out.println("Vida Atual do " + this.getNome() + " é de " + this.getHp()+".");
+            System.out.println("Vida Atual do " + this.getNome() + " é de " + this.getHpAtual()+".");
         }
         System.out.println("\n============================================");
         System.out.println("           ☠️ BATALHA TERMINADA ☠️");
@@ -179,7 +184,7 @@ public abstract class Personagem {
     public String toString(){
         return "Nome: " + this.nome+
                 " Level: " + this.lvl +
-                "\nVida: " + this.hp +
+                "\nVida: " + this.hpAtual +"/" + this.hpMax +
                 "\nAtaque: " + this.at +
                 "\nDefesa: " + this.df +
                 "\nInventario: " + this.inv.toString();
@@ -190,7 +195,8 @@ public abstract class Personagem {
         if(modelo == null)throw new Exception("O modelo não pode ser nulo");
 
         this.nome = modelo.nome;
-        this.hp = modelo.hp;
+        this.hpAtual = modelo.hpAtual;
+        this.hpMax = modelo.hpMax;
         this.at = modelo.at;
         this.lvl = modelo.lvl;
         this.df = modelo.df;
