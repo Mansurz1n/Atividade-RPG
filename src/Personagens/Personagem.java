@@ -95,6 +95,7 @@ public abstract class Personagem {
                 switch (escolha) {
                     case 1: {
                         this.hpMax += 10;
+                        this.hpAtual += 10;
                         System.out.println("Agora o Hp do personagem é de :" + this.hpMax);
                         escolhaCerta = true;
                         break;
@@ -124,6 +125,22 @@ public abstract class Personagem {
     public boolean isTa_vivo() {
         return this.hpAtual > 0;
     }
+
+
+    public void restaurarVida (){
+        this.hpAtual = this.hpMax;
+    }
+
+
+    public void curarVida(byte quantCura){
+        if(quantCura<= 0) return;
+        this.hpAtual += quantCura;
+        if(this.hpAtual> this.hpMax){
+            this.hpAtual = this.hpMax;
+        }
+        System.out.println(this.getNome() + " curou " + quantCura + " de vida. (HP: " + this.hpAtual + "/" + this.hpMax+ ")");
+    }
+
 
 
     public void dano (short dano){
@@ -176,6 +193,7 @@ public abstract class Personagem {
         System.out.println("\n============================================");
         System.out.println("           ☠️ BATALHA TERMINADA ☠️");
         System.out.println("============================================");
+        if(!i.isTa_vivo()) this.restaurarVida();
     }
 
 
