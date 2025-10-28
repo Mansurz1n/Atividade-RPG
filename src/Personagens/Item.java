@@ -109,12 +109,6 @@ public class Item implements Comparable<Item>,Cloneable {
         return ret;
     }
 
-    //#TODO
-    /*Diferentemente da versão anterior, o inventário agora pode conter múltiplas unidades do mesmo item
-    (ex.: 2 Poções de Cura, 3 Flechas Mágicas). Sempre que um item for usado, sua quantidade é decrementada.
-    equals deve ser usado para verificar se um item já existe no inventário, somando na quantidade em vez de
-    criar duplicatas. compareTo: ordena os itens do inventário pelo nome ou poder.
-    * */
     @Override
     public int compareTo(Item o) {
         if (this.poder<o.poder) return  -666;
