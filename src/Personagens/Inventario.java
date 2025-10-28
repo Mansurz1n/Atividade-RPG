@@ -102,9 +102,26 @@ public class Inventario implements Cloneable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if(o==this) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Inventario that = (Inventario) o;
+        if(!that.itens.equals(this.itens))return false;
+        return true;
+    }
+
+    @Override
     public String toString(){
         if(this.itens.isEmpty()) return "Iventario Vazio";
         return "Inventario " + this.itens.toString();
     }
 
+    @Override
+    public int hashCode() {
+        int ret = 1;
+        for (Item i: this.itens){
+            ret =ret * 2 + i.hashCode();
+        }
+        return ret;
+    }
 }

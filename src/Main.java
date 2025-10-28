@@ -15,7 +15,7 @@ public class Main {
 
         Item adaga = new Item("A","Ataque 5","arma", (byte) 1,(byte)5);
         Item pocao = new Item("P","c5","cura", (byte) 5,(byte)5);
-        Item superpotion = new Item("superpotion","Cura 10","cura", (byte) 2,(byte)10);
+        Item superpotion = new Item("superpotion","cura 10","cura", (byte) 2,(byte)10);
 
 
         Inventario i = new Inventario();
@@ -44,6 +44,10 @@ public class Main {
 
     }
 
+    public static void TestePersonagem()
+    {
+
+    }
 
 
 }
