@@ -1,0 +1,26 @@
+﻿Grupo 21 da turma 102-04(Aulas Práticas na terça-feira, segunda aula:9:55 até as 11:30)
+
+
+
+
+Nome:Gabriel de Oliveira Mansur                                                        RA:24015424
+
+
+
+
+Nota:7.5
+
+
+Minha parte do projeto foi que eu fiz as Classes Item.java, Personagem.java, Inventario.java. Acho que meu desempenho nesse projeto foi bom, mas ainda acho que eu poderia ter melhorado meu código. Algo como um Enum para pegar os tipos de Itens diferentes ou ter melhorado a parte de relação entre item e personagem, diversificado os tipos de itens e etc. Em resumo, esse projeto foi algo divertido que me ajudou a aplicar os conhecimentos que tive em aula mas podia ter me esforçado mais.
+
+
+
+Nome: Gabriel Henrique Pera Coelho                                                           RA 24012508
+
+
+
+
+Nota: 7,5
+
+
+Minha participação nesse projeto foi no desenvolvimento da história do jogo e em sua progressão na classe main, assim como na criação das classes Arqueiro, Guerreiro, Mago e inimigo. Meu desempenho ao decorrer deste trabalho foi decente em termos de auto-avaliação, porém acho que poderia melhorar, principalmente no que se diz respeito à escrita do código e no conhecimento de conceitos de programação orientada a objetos. Tive dificuldades na adição de sub-classes inicialmente e em como integrar o código como um todo, tendo que recorrer a alguns fóruns, vídeos e inteligência artificial para me auxiliar no desenvolvimento desse jogo. No geral foi um projeto que me ajudou bastante a aprender conceitos de Java.
