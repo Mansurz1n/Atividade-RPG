@@ -228,7 +228,6 @@ public class Main {
             System.out.print("Opção: ");
 
             byte escolha = Teclado.getUmByte();
-            boolean usouItem = false;
 
             switch (escolha) {
                 case 1:
@@ -238,7 +237,7 @@ public class Main {
                     break;
                 case 2:
 
-                    usouItem = usarItemEmBatalha();
+                    usarItemEmBatalha();
                     break;
                 case 3:
                     if (inimigo.isBoss()) {

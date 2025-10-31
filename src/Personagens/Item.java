@@ -63,16 +63,6 @@ public class Item implements Comparable<Item>,Cloneable {
     }
 
 
-    public void usar(){
-        if (this.quant>0){
-            this.quant --;
-            System.out.println("Usou " + this.nome_item + " Restam:" + this.quant);
-            return;
-        }else {
-            System.out.println("Não possui mais esse item");
-        }
-    }
-
     @Override
     public String toString(){
         return this.nome_item + " " +this.quant + "\n"
