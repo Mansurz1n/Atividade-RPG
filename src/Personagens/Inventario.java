@@ -45,23 +45,23 @@ public class Inventario implements Cloneable {
     public Item buscarItem(String nome)throws Exception{
         if(this.itens.isEmpty())throw new Exception("Não tem nenhum item no Inventario para-se buscar");
         for (Item item: this.itens){
-            //equalsIgnoreCase() compara se é igual ignorando letras maisculas/minusculas
+
             if(item.getNome_item().equalsIgnoreCase(nome)) return item;
         }
         return null;
     }
 
-    //Função que remove o item do inventario
+
     public void removerItem(String nome, byte quantRemover)throws Exception{
         Item i = this.buscarItem(nome);
         if(i!=null) {
             try {
                 if (i.getQuant() > quantRemover) {
                     i.setQuant((byte) (i.getQuant() - quantRemover));
-                    // sobrou item ainda
+
                 } else if (i.getQuant() == quantRemover) {
                     this.itens.remove(i);
-                    //remove a o item do negocio pois ele quis remover a quantidade certa que ele tinha
+
                 } else {
                     throw new Exception("Não possui" + quantRemover + " de " + i.getNome_item());
                 }

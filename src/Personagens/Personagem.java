@@ -12,7 +12,8 @@ public abstract class Personagem {
     private short lvl;
     private Inventario inv;
 
-    protected static final Random dado = new Random();
+
+    public static final Random dado = new Random();
 
     public Personagem (String nome, short hp,short at,short df)throws Exception{
         if(nome == null) throw new Exception("Nome não pode ser nulo");
@@ -74,6 +75,14 @@ public abstract class Personagem {
         return this.hpAtual;
     }
 
+    public short getHpMax() {
+        return this.hpMax;
+    }
+
+    public short getDf() {
+        return this.df;
+    }
+
     public Inventario getInv() {
         return this.inv;
     }
@@ -90,6 +99,7 @@ public abstract class Personagem {
             System.out.println("1: Vida" + this.hpMax + " + 10 " + "\n 2: Ataque "+this.at +" +1" +  "\n 3: Defesa " + this.df + " +1.");
             System.out.println("Escolha: ");
             try {
+                //
                 escolha = Teclado.getUmByte();
 
                 switch (escolha) {
@@ -146,7 +156,7 @@ public abstract class Personagem {
     public void dano (short dano){
         if(dano>0){
             this.hpAtual -=dano;
-            System.out.println("O " + this.nome + "levou " + dano + "de dano!");
+            System.out.println("O " + this.nome + " levou " + dano + " de dano!");
             if(!isTa_vivo()){
                 this.hpAtual = 0;
                 System.out.println("O " + this.nome + " foi derrotado!" );
@@ -162,40 +172,10 @@ public abstract class Personagem {
 
         short dano = (short) ((this.at + dado) - defOponente);
 
-        System.out.println(this.nome + "rolou " + dado + " O  ataque dele é de " + (this.at+dado));
+        System.out.println(this.nome + " rolou " + dado + ". O ataque dele é de " + (this.at+dado));
         if(dano<0) dano = 0;
         return dano ;
     }
-
-
-    public void batalha( Personagem i ) throws Exception{
-        System.out.println("\n============================================");
-        System.out.println("           ⚔️ BATALHA INICIADA ⚔️");
-        System.out.println("============================================");
-        System.out.println(this.getNome() + " (HP: " + this.getHpAtual() + ") vs " + i.getNome() + " (HP: " + i.getHpAtual() + ")");
-        System.out.println("--------------------------------------------");
-
-        while(i.isTa_vivo() && this.isTa_vivo()){
-            short ataque = calculoDano(i.df);
-            i.dano(ataque);
-
-            if(!i.isTa_vivo()){
-                this.upeiDeNivel();
-                break;
-            }
-            System.out.println("Vida Atual do " + i.getNome() + " é de " + i.getHpAtual()+".");
-
-            ataque = calculoDano(this.df);
-            this.dano(ataque);
-
-            System.out.println("Vida Atual do " + this.getNome() + " é de " + this.getHpAtual()+".");
-        }
-        System.out.println("\n============================================");
-        System.out.println("           ☠️ BATALHA TERMINADA ☠️");
-        System.out.println("============================================");
-        if(!i.isTa_vivo()) this.restaurarVida();
-    }
-
 
 
     @Override
@@ -205,7 +185,7 @@ public abstract class Personagem {
                 "\nVida: " + this.hpAtual +"/" + this.hpMax +
                 "\nAtaque: " + this.at +
                 "\nDefesa: " + this.df +
-                "\nInventario: " + this.inv.toString();
+                "\nInventario: " + this.inv.toString(); //
 
     }
 
@@ -218,7 +198,7 @@ public abstract class Personagem {
         this.at = modelo.at;
         this.lvl = modelo.lvl;
         this.df = modelo.df;
-        this.inv = new Inventario(modelo.inv);
+        this.inv = new Inventario(modelo.inv); //
     }
 
     @Override
